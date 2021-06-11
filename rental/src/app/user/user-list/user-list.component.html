@@ -1,0 +1,22 @@
+<div class="row">
+    <h3>Users</h3>
+</div>
+<div class="row">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Username</th>
+                <th scope="col">Password</th>
+                <th scope="col">Role</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of users">
+                <td> {{user.name}}</td>
+                <td>{{user.username}}</td>
+                <td appHighlight>{{user.password}}</td>
+                <td appHighlight>{{user.role}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
