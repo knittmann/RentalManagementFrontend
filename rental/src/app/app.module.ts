@@ -20,7 +20,6 @@ import { RentalDeleteComponent } from './rentals/rental-delete/rental-delete.com
 import { RentalListComponent } from './rentals/rental-list/rental-list.component';
 import { HeaderComponent } from './header/header.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
-import { RentalComponent } from './rental/rental.component';
 import { UserListComponent } from './user/user-list/user-list.component';
 
 @NgModule({
@@ -32,8 +31,7 @@ import { UserListComponent } from './user/user-list/user-list.component';
     RentalDeleteComponent,
     RentalListComponent,
     SidenavComponent,
-    HeaderComponent
-    RentalComponent,
+    HeaderComponent,
     UserListComponent
   ],
   imports: [
