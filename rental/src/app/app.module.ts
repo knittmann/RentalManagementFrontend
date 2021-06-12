@@ -25,7 +25,6 @@ import { UserListComponent } from './user/user-list/user-list.component';
 @NgModule({
   declarations: [
     AppComponent,
-    UserComponent,
     RentalUpdateComponent,
     RentalCreateComponent,
     RentalDeleteComponent,
