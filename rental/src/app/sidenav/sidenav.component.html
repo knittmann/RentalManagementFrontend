@@ -1,0 +1,27 @@
+<mat-divider></mat-divider>
+    <button mat-button class="menu-button">
+        <mat-icon>home</mat-icon> &nbsp;&nbsp;
+        <span routerLinkActive="active" routerLink="/">Home</span>
+    </button>
+<mat-divider></mat-divider>
+    <button mat-button class="menu-button">
+        <mat-icon>account_box</mat-icon>  <!-- account_circle-->
+        <button mat-button [matMenuTriggerFor]="user">User</button>
+        <mat-menu #user="matMenu">
+          <button mat-menu-item routerLinkActive="active" routerLink="/user">User List</button>
+        </mat-menu>
+
+    </button>
+    <button mat-button class="menu-button">
+        <mat-icon>menu</mat-icon>
+        <button mat-button [matMenuTriggerFor]="rental">Rental</button>
+        <mat-menu #rental="matMenu">
+          <button mat-menu-item routerLinkActive="active" routerLink="/rental">Rental List</button>
+          <button mat-menu-item routerLinkActive="active" routerLink="/rental-create">Create Rental</button>
+        </mat-menu>
+    </button>
+<mat-divider></mat-divider>
+    <button mat-button class="menu-button">
+        <mat-icon>help</mat-icon> &nbsp;&nbsp;
+        <span>Help</span>
+    </button>
