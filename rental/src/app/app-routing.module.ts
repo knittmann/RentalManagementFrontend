@@ -5,11 +5,11 @@ import { PagenotfoundComponent } from './pagenotfound/pagenotfound.components';
 import { RentalCreateComponent } from './rentals/rental-create/rental-create.component';
 import { RentalListComponent } from './rentals/rental-list/rental-list.component';
 import { RentalUpdateComponent } from './rentals/rental-update/rental-update.component';
-import { UserComponent } from './users/user.component';
+import { UserListComponent } from './user/user-list/user-list.component';
 
 const routes: Routes = [
   { path: '', redirectTo:'',pathMatch: 'full'},
-  { path: 'user',component: UserComponent},
+  { path: 'users', component:UserListComponent},
   { path: 'rental',component:RentalListComponent},
   { path: 'rental-create', component:RentalCreateComponent},
   { path: 'updateRental/:id', component: RentalUpdateComponent },
