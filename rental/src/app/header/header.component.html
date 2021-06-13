@@ -1,1 +1,20 @@
-<mat-toolbar>Rental Management</mat-toolbar>
+<mat-toolbar>
+    <span>Rental Management</span>
+
+    <span class="spacer"></span>
+    
+    <span *ngIf="user === 'User'">
+        <button mat-button routerLink="/login">Log In</button>
+    </span>
+
+    <span *ngIf="user !== 'User'">
+        <button mat-button class="menu-button">
+            <mat-icon>account_box</mat-icon>  <!-- account_circle-->
+            <button mat-button [matMenuTriggerFor]="myAccount">{{user}} ({{role | titlecase}})</button>
+            <mat-menu #myAccount="matMenu">
+              <button mat-menu-item routerLink="/login">Log In</button>
+              <button mat-menu-item routerLink="/login" (click)="logout()">Log Out</button>
+            </mat-menu>
+        </button>
+    </span>
+</mat-toolbar>
