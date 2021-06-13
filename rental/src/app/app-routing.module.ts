@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { LoginComponent } from './login/login.component';
 import { AppComponent } from './app.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.components';
 import { RentalCreateComponent } from './rentals/rental-create/rental-create.component';
@@ -10,6 +11,7 @@ import { UserListComponent } from './user/user-list/user-list.component';
 const routes: Routes = [
   { path: '', redirectTo:'',pathMatch: 'full'},
   { path: 'users', component:UserListComponent},
+  { path: 'login', component:LoginComponent},
   { path: 'rental',component:RentalListComponent},
   { path: 'rental-create', component:RentalCreateComponent},
   { path: 'rental-update/:id', component: RentalUpdateComponent },
