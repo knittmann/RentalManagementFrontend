@@ -37,8 +37,13 @@ export class UserService {
     .pipe(catchError(this.errorHandler));
   }
 
-  deleteEmployee(id: string) {
+  deleteUser(id: string) {
     return this.http.delete(this._url + '/' + id)
+    .pipe(catchError(this.errorHandler));
+  }
+
+  loginUser(username: string, password: string) {
+    return this.http.post<User[]>(this._url + '/login/', {username, password})
     .pipe(catchError(this.errorHandler));
   }
 

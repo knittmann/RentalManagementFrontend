@@ -3,12 +3,16 @@
         <mat-icon>home</mat-icon> &nbsp;&nbsp;
         <span routerLinkActive="active" routerLink="/">Home</span>
     </button>
+    <button mat-button class="menu-button">
+        <mat-icon>home</mat-icon> &nbsp;&nbsp;
+        <span routerLinkActive="active" routerLink="/login">Login</span>
+    </button>
 <mat-divider></mat-divider>
     <button mat-button class="menu-button">
         <mat-icon>account_box</mat-icon>  <!-- account_circle-->
-        <button mat-button [matMenuTriggerFor]="user">User</button>
-        <mat-menu #user="matMenu">
-          <button mat-menu-item routerLinkActive="active" routerLink="/user">User List</button>
+        <button mat-button [matMenuTriggerFor]="users">Users</button>
+        <mat-menu #users="matMenu">
+          <button mat-menu-item routerLinkActive="active" routerLink="/users">Users List</button>
         </mat-menu>
 
     </button>

@@ -1,6 +1,6 @@
-export interface User {
-    name: string,
-    username: string,
-    password: string,
-    role: string
+export class User {
+    name: string | undefined;
+    username: string | undefined;
+    password: string | undefined;
+    role: string | undefined;
 }

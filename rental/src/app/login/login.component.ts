@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthGuardService } from 'src/app/services/auth-guard.service';
 import { UserService } from 'src/app/services/user/user.service';
@@ -11,35 +11,28 @@ import { UserService } from 'src/app/services/user/user.service';
 })
 export class LoginComponent implements OnInit {
 
-  invalidCredentialsMsg: string | undefined;
-  user: any;
-  userName: string | undefined;
-  password: string | undefined;
-  retUrl: string | null="home";
+  // invalidCredentialsMsg: string | undefined;
+  // user: any;
+  // userName: string | undefined;
+  // password: string | undefined;
+  // retUrl: string | null="home";
+  public loginForm: any;
 
   constructor(
     private authGuardService: AuthGuardService,
-    private userService: UserService,
     private router: Router,
-    private activatedRoute: ActivatedRoute,
-    ) { }
+    private fb: FormBuilder
+    ) {}
 
-  ngOnInit(): void {
-    this.activatedRoute.queryParamMap.subscribe(params => {
-      this.retUrl = params.get('retUrl'); 
-      console.log('LoginComponent/ngOnInit '+ this.retUrl);
+  ngOnInit() {
+    this.loginForm= this.fb.group({
+      username: [''],
+      password: ['']
     });
   }
 
-  onLoginSubmit(loginForm: any) {
-    this.authGuardService.login(loginForm.value.userName, loginForm.value.password).subscribe( data => {
-      console.log('return to ' + this.retUrl);
-      if (this.retUrl != null) {
-        this.router.navigate([this.retUrl]);
-      } else {
-        this.router.navigate(['home']);
-      }
-    })
+  onLoginSubmit() {
+    this.authGuardService.login(this.loginForm.value)
   }
 
 }
