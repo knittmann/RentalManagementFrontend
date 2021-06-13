@@ -24,6 +24,7 @@ export class AuthGuardService {
     return this.httpClient.post<any>(`${this._url}/users/login`, user)
       .subscribe((res: any) => {
         localStorage.setItem('access_token', res.token);
+        localStorage.setItem('role', res.role);
         this.getUserProfile(res._id).subscribe((res) => {
           this.currentUser = res;
           console.log(this.currentUser);
@@ -37,8 +38,13 @@ export class AuthGuardService {
   }
 
   get isLoggedIn(): boolean {
-    let authToken = localStorage.getItem('access_token');
+    const authToken = localStorage.getItem('access_token');
     return (authToken !== null) ? true : false;
+  }
+
+  get isAdmin(): boolean {
+    const role = localStorage.getItem('role');
+    return (role !== 'admin') ? false : true;
   }
 
   logout() {

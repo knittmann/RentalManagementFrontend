@@ -7,10 +7,11 @@ import { RentalCreateComponent } from './rentals/rental-create/rental-create.com
 import { RentalListComponent } from './rentals/rental-list/rental-list.component';
 import { RentalUpdateComponent } from './rentals/rental-update/rental-update.component';
 import { UserListComponent } from './user/user-list/user-list.component';
+import { IsLoggedInGuard } from './guards/is-logged-in.guard';
 
 const routes: Routes = [
   { path: '', redirectTo:'',pathMatch: 'full'},
-  { path: 'users', component:UserListComponent},
+  { path: 'users', component:UserListComponent, canActivate: [IsLoggedInGuard]},
   { path: 'login', component:LoginComponent},
   { path: 'rental',component:RentalListComponent},
   { path: 'rental-create', component:RentalCreateComponent},

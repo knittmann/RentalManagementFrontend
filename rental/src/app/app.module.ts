@@ -23,6 +23,9 @@ import { SidenavComponent } from './sidenav/sidenav.component';
 import { UserListComponent } from './user/user-list/user-list.component';
 import { LoginComponent } from './login/login.component';
 import { AuthInterceptor } from './shared/auth.interceptor';
+import { AuthGuardService } from './services/auth-guard.service';
+import { IsLoggedInGuard } from './guards/is-logged-in.guard';
+import { IsAdminGuard } from './guards/is-admin.guard';
 
 @NgModule({
   declarations: [
@@ -55,6 +58,9 @@ import { AuthInterceptor } from './shared/auth.interceptor';
     MatMenuModule,
   ],
   providers: [
+    AuthGuardService,
+    IsLoggedInGuard,
+    IsAdminGuard,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
