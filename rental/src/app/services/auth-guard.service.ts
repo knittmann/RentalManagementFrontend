@@ -12,7 +12,7 @@ import { UserService } from './user/user.service';
 export class AuthGuardService {
 
   private _url: string = "http://localhost:3000/api";
-  headers = new HttpHeaders().set('Content-Type', 'string');
+  headers = new HttpHeaders().set('Content-Type', 'application/json');
   currentUser = {};
 
   constructor(private httpClient: HttpClient,
