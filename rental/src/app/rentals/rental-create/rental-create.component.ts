@@ -1,5 +1,6 @@
-import { Component, EventEmitter, OnInit} from "@angular/core";
-import { NgForm } from "@angular/forms";
+import { Component, OnInit} from "@angular/core";
+import { FormBuilder, NgForm } from "@angular/forms";
+import { Router } from "@angular/router";
 import { RentalService } from "src/app/services/rental/rental.service";
 import { Rental } from "../../models/rental.model";
 
@@ -9,25 +10,30 @@ import { Rental } from "../../models/rental.model";
   styleUrls: ['./rental-create.component.css']
 })
 export class RentalCreateComponent implements OnInit{
-  enteredTitle = '';
-  enteredContent = '';
-  rentalCreated = new EventEmitter<Rental>();
+  rentals: any;
+  errorMsg : any;
 
-  constructor(public rentalService: RentalService){
+  constructor(public rentalService: RentalService,private router: Router,
+    private fb: FormBuilder){
   }
 
   ngOnInit(){
   }
 
-  onAddRental(form: NgForm){
-    if( form.invalid){
+  onAddRental(addRentalForm: NgForm){
+    if( addRentalForm.invalid){
       return;
     }
-    const rental: Rental = {
-      title: form.value.title,
-      content: form.value.content
-    };
-    this.rentalService.addRental(form.value.title,form.value.content);
-    form.resetForm();
+    console.log(addRentalForm);
+    this.rentalService.addRental(addRentalForm.value).subscribe(
+      (data) => this.rentals = data,
+      (error) => this.errorMsg = error
+    );
+    this.rentalService.getRentals().subscribe(
+      (data) => this.rentals = data,
+      (error) => this.errorMsg = error
+    )
+    // addRentalForm.resetForm();
+    this.router.navigate(['/rental']);
   }
 }

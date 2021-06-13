@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatInputModule} from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
@@ -12,11 +12,13 @@ import { MatSidenavModule} from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RentalUpdateComponent} from './rentals/rental-update/rental-update.component';
 import { RentalCreateComponent } from './rentals/rental-create/rental-create.component';
-import { RentalDeleteComponent } from './rentals/rental-delete/rental-delete.component';
 import { RentalListComponent } from './rentals/rental-list/rental-list.component';
 import { HeaderComponent } from './header/header.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
@@ -25,10 +27,8 @@ import { UserListComponent } from './user/user-list/user-list.component';
 @NgModule({
   declarations: [
     AppComponent,
-    UserComponent,
     RentalUpdateComponent,
     RentalCreateComponent,
-    RentalDeleteComponent,
     RentalListComponent,
     SidenavComponent,
     HeaderComponent,
@@ -38,6 +38,7 @@ import { UserListComponent } from './user/user-list/user-list.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     BrowserAnimationsModule,
     MatInputModule,
     MatCardModule,
@@ -48,7 +49,9 @@ import { UserListComponent } from './user/user-list/user-list.component';
     MatIconModule,
     MatDividerModule,
     MatMenuModule,
-    HttpClientModule
+    HttpClientModule,
+    MatTableModule,
+    MatPaginatorModule
   ],
   providers: [],
   bootstrap: [AppComponent]

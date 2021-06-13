@@ -1,48 +1,57 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Component} from '@angular/core';
 
 import { Rental } from '../../models/rental.model';
 import { RentalService } from 'src/app/services/rental/rental.service';
+import { ActivatedRoute, Router } from '@angular/router';
+
+
+// const ELEMENT_DATA: Rental[] = [
+//     {receive_date: "Hydrogen", receive_hours: 'Hydrogen', return_hours: "Hydrogen", return_date: "Hydrogen",rate_type:"Hydrogen",
+//     equipment:[{category:"Hydrogen",make:"Hydrogen",model:"Hydrogen",rate_per_day:"Hydrogen",rate_per_month:"Hydrogen",rate_per_week:"Hydrogen",serial_number:"Hydrogen"}],
+//     vendor:{sales_person:"Hydrogen",address:"Hydrogen",contact:"Hydrogen"},
+//     invoice:{amount:"Hydrogen",invoice_date:"Hydrogen"}}
+//   ];
+
 
 @Component({
   selector: 'app-rental-list',
   templateUrl: './rental-list.component.html',
   styleUrls: ['./rental-list.component.css']
 })
-export class RentalListComponent implements OnInit, OnDestroy{
-  // rentals = [
-  //   {title: 'first', equipment : "This is the first "},
-  //   {title: 'second', equipment : "This is the second "},
-  //   {title: 'third', equipment : "This is the third "}
-  // ];
+export class RentalListComponent {
 
-  rentals:Rental[] = [];
-  private rentalsSub: Subscription | undefined;
-  router: any;
+  public rentals:any;
   errorMsg: any;
-
-  constructor(public rentalService: RentalService){
+  constructor(public rentalService: RentalService, private route: ActivatedRoute,
+    private router: Router){
   }
 
-  ngOnInit(){
-    this.rentals = this.rentalService.getRentals();
-    this.rentalsSub = this.rentalService.getRentalUpdatedListener()
-      .subscribe((rentals: Rental[])=>{
-        this.rentals = rentals;
-      });
-  }
+  displayedColumns: string[] = ['_id','receive_date', 'receive_hours', 'return_hours', 'return_date','rate_type',
+                  '_id','category','make','model','rate_per_day','rate_per_month','rate_per_week','serial_number',
+                  'sales_person','address','contact',
+                  'invoice_date','amount'];
+  // dataSource = ELEMENT_DATA;
 
-  ngOnDestroy(){
-    this.rentalsSub?.unsubscribe();
+
+
+  ngOnInit(): void {
+    this.rentalService.getRentals().subscribe(
+      (data) => {this.rentals = data; console.log(data);}, //success
+      (error) =>this.errorMsg = error, // error
+      () => console.log("Completed")
+    )
   }
 
   updateRental(rental: any){
-    this.router.navigate(['/rental-update', rental.id])
+    this.router.navigate(['/rental-update', rental._id])
   }
 
-  // deleteRental(rental: any){
-  //   this.rentalService.deleteRental(rental.id).subscribe(() => {
-  //     this.rentalService.getRentals();
-  //   })
-  // }
+  deleteRental(rental: any){
+    this.rentalService.deleteRental(rental._id).subscribe(() => {
+      this.rentalService.getRentals().subscribe(
+        (data) => this.rentals = data,
+        (error) => this.errorMsg = error
+      );
+    })
+  }
 }

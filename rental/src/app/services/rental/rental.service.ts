@@ -1,6 +1,6 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Subject, throwError } from 'rxjs';
+import { Observable,  throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Rental } from 'src/app/models/rental.model';
 
@@ -8,24 +8,32 @@ import { Rental } from 'src/app/models/rental.model';
   providedIn: 'root'
 })
 export class RentalService {
-  private _url: string = "http://localhost:3000/api/rental"
+  private _url: string = "http://localhost:3000/api/rentals"
   private rentals: Rental[] = [];
-  private rentalUpdated = new Subject<Rental[]>();
 
   constructor(private http: HttpClient){}
 
-  getRentals(){
-    return [...this.rentals];
+  public getRentals(): Observable<RentalService[]> {
+    return this.http.get<RentalService[]>(this._url)
+      .pipe(catchError(this.errorHandler));
   }
 
-  getRentalUpdatedListener(){
-    return this.rentalUpdated.asObservable();
+  public getRentalById(id: string): Observable<Rental[]>{
+    return this.http.get<Rental[]>(this._url + '/' + id)
+    .pipe(catchError(this.errorHandler));
   }
 
-  addRental(title: string, content: string){
-    const rental: Rental = {title: title, content: content};
-    this.rentals.push(rental);
-    this.rentalUpdated.next([...this.rentals]);
+  public addRental(rental: any): Observable<Rental[]> {
+    console.log(rental);
+    return this.http.post<Rental[]>(this._url + '/new', rental)
+    .pipe(catchError(this.errorHandler));
+  }
+
+  public updateRental(id: string, rental: any): Observable<Rental[]> {
+    console.log(rental);
+    console.log(this._url + '/' + id);
+    return this.http.put<Rental[]>(this._url  + '/' + id, rental)
+    .pipe(catchError(this.errorHandler));
   }
 
   public deleteRental(id: any) {
@@ -36,10 +44,10 @@ export class RentalService {
     }else{
       alert("Back to rental page")
       return this.http.get<Rental[]>(this._url)
-      .pipe(catchError(this.errorhandler));
+      .pipe(catchError(this.errorHandler));
     }
   }
-  errorhandler(error: HttpErrorResponse){
+  errorHandler(error: HttpErrorResponse){
     return throwError(error.message || "Server Error")
   }
 }

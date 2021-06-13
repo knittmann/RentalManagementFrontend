@@ -6,3 +6,18 @@
 .info-text{
   text-align: center;
 }
+
+table {
+  width: 110%;
+  table-layout: auto;
+}
+
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+td, th {
+  width: 10%;
+}

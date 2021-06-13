@@ -1,9 +1,87 @@
 <mat-card>
-  <form (submit)="onAddRental(rentalForm)" #rentalForm="ngForm">
+  <form (submit)="onAddRental(addRentalForm)" #addRentalForm="ngForm">
+    <!-- Rental start-->
     <mat-form-field>
-        <input matInput type="text" name="title" ngModel required placeholder="Rental Title" #title="ngModel">
-        <mat-error *ngIf="title.invalid">Please enter a rental title.</mat-error>
+        <input matInput type="text" name="receive_date" ngModel required placeholder="Receive Date" #receive_date="ngModel">
+        <mat-error *ngIf="receive_date.invalid">Please enter a receive date.</mat-error>
     </mat-form-field>
+    <mat-form-field>
+      <input matInput type="text" name="receive_hours" ngModel required placeholder="Receive hours" #receive_hours="ngModel">
+      <mat-error *ngIf="receive_hours.invalid">Please enter a receive hours.</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput type="text" name="return_date" ngModel required placeholder="Return date" #return_date="ngModel">
+      <mat-error *ngIf="return_date.invalid">Please enter a return date.</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput type="text" name="return_hours" ngModel required placeholder="Return hours" #return_hours="ngModel">
+      <mat-error *ngIf="return_hours.invalid">Please enter a return hours.</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput type="text" name="rate_type" ngModel required placeholder="Rate type" #rate_type="ngModel">
+      <mat-error *ngIf="rate_type.invalid">Please enter a Rate type.</mat-error>
+    </mat-form-field>
+    <!-- Rental end-->
+
+    <!-- Equipment start-->
+    <mat-form-field>
+      <input matInput type="text" name="rental.equipment[0].category" ngModel required placeholder="Category" #category="ngModel">
+      <mat-error *ngIf="category.invalid">Please enter a Category.</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput type="text" name="rental.equipment[0].make" ngModel required placeholder="Make" #make="ngModel">
+      <mat-error *ngIf="make.invalid">Please enter a Make.</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput type="text" name="rental.equipment[0].model" ngModel required placeholder="Model" #model="ngModel">
+      <mat-error *ngIf="model.invalid">Please enter a Model.</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput type="text" name="rental.equipment[0].serial_number" ngModel required placeholder="Serial Number" #serial_number="ngModel">
+      <mat-error *ngIf="serial_number.invalid">Please enter a Serial Number.</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput type="text" name="rental.equipment[0].rate_per_day" ngModel required placeholder="rate per day" #rate_per_day="ngModel">
+      <mat-error *ngIf="rate_per_day.invalid">Please enter a Rate per day.</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput type="text" name="rental.equipment[0].rate_per_week" ngModel required placeholder="Rate per week" #rate_per_week="ngModel">
+      <mat-error *ngIf="rate_per_week.invalid">Please enter a Rate per week.</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput type="text" name="rental.equipment[0].rate_per_month" ngModel required placeholder="Rate per month" #rate_per_month="ngModel">
+      <mat-error *ngIf="rate_per_month.invalid">Please enter a Rate per month.</mat-error>
+    </mat-form-field>
+    <!-- Equipment end-->
+
+    <!-- Vendor start-->
+    <mat-form-field>
+      <input matInput type="text" name="rental.vendor.sales_person" ngModel required placeholder="Sales person" #sales_person="ngModel">
+      <mat-error *ngIf="sales_person.invalid">Please enter a Sales person.</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput type="text" name="rental.vendor.address" ngModel required placeholder="Address" #address="ngModel">
+      <mat-error *ngIf="address.invalid">Please enter a Address.</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput type="text" name="rental.vendor.contact" ngModel required placeholder="Contact" #contact="ngModel">
+      <mat-error *ngIf="contact.invalid">Please enter a Contact.</mat-error>
+    </mat-form-field>
+
+    <!-- Vendor end-->
+
+    <!-- Invoice start-->
+    <mat-form-field>
+      <input matInput type="text" name="rental.invoice.invoice_date" ngModel required placeholder="Invoice date" #invoice_date="ngModel">
+      <mat-error *ngIf="invoice_date.invalid">Please enter an Invoice date.</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput type="text" name="rental.invoice.amount" ngModel required placeholder="Amount" #amount="ngModel">
+      <mat-error *ngIf="amount.invalid">Please enter an Amount.</mat-error>
+    </mat-form-field>
+
+    <!-- Invoice end-->
+
     <mat-form-field>
       <textarea matInput row="4" name="content" ngModel required placeholder="Rental Content" #content="ngModel"></textarea>
       <mat-error *ngIf="content.invalid">Please enter a rental content.</mat-error>

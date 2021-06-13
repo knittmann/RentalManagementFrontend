@@ -12,7 +12,7 @@ const routes: Routes = [
   { path: 'users', component:UserListComponent},
   { path: 'rental',component:RentalListComponent},
   { path: 'rental-create', component:RentalCreateComponent},
-  { path: 'updateRental/:id', component: RentalUpdateComponent },
+  { path: 'rental-update/:id', component: RentalUpdateComponent },
   { path: '**', component: PagenotfoundComponent}
 ];
 
