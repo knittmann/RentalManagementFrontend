@@ -1,1 +1,47 @@
-<p>rental update works!</p>
+<div class="container-fluid">
+  <h2>Update Rental</h2>
+  <mat-card>
+    <form [formGroup]="updateRentalForm" (ngSubmit)="update(rental._id, rental)">
+      <div class="form-group">
+        <label>receive_hours</label>
+        <input type="text" class="form-control" formControlName="receive_hours"
+        [class.is-invalid]="rental.receive_hours?.invalid && rental.receive_hours?.touched">
+        <div *ngIf="rental.receive_hours?.touched && rental.receive_hours?.errors">
+          <div class="alert alert-danger" *ngIf="rental.receive_hours?.errors?.required">receive_hours is required</div>
+          <div class="alert alert-danger" *ngIf="rental.receive_hours?.errors?.minlength">receive_hours should be at least 3 characters long</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>receive_date</label>
+        <input type="text" class="form-control" formControlName="receive_date"
+        [class.is-invalid]="rental.receive_date?.invalid && rental.receive_date?.touched">
+        <div *ngIf="rental.receive_date?.touched && rental.receive_date?.errors">
+          <div class="alert alert-danger" *ngIf="rental.receive_date?.errors?.required">Last Name is required</div>
+          <div class="alert alert-danger" *ngIf="rental.receive_date?.errors?.minlength">Last Name should be at least 3 characters long</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>rate_type</label>
+        <input type="text" class="form-control" formControlName="rate_type"
+        [class.is-invalid]="rental.rate_type?.invalid && rental.rate_type?.touched">
+        <div *ngIf="rental.rate_type?.touched && rental.rate_type?.errors">
+          <div class="alert alert-danger" *ngIf="rental.rate_type?.errors?.required">rate_type is required</div>
+          <div class="alert alert-danger" *ngIf="rental.rate_type?.errors?.minlength">rate_type should be at least 2 characters long</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>amount</label>
+        <input type="text" class="form-control" formControlName="amount"
+        [class.is-invalid]="rental.invoice.amount?.invalid && rental.invoice.amount?.touched">
+        <div *ngIf="rental.invoice.amount?.touched && rental.invoice.amount?.errors">
+          <div class="alert alert-danger" *ngIf="rental.invoice.amount?.errors?.required">amount is required</div>
+          <div class="alert alert-danger" *ngIf="rental.invoice.amount?.errors?.pattern">amount must be Numbers</div>
+      </div>
+      </div>
+      <button mat-flat-button color="accent" [disabled]="!updateRentalForm.valid">Submit Form</button>
+    </form>
+ </mat-card>
+</div>

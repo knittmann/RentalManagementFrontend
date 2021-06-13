@@ -12,11 +12,13 @@ import { MatSidenavModule} from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RentalUpdateComponent} from './rentals/rental-update/rental-update.component';
 import { RentalCreateComponent } from './rentals/rental-create/rental-create.component';
-import { RentalDeleteComponent } from './rentals/rental-delete/rental-delete.component';
 import { RentalListComponent } from './rentals/rental-list/rental-list.component';
 import { HeaderComponent } from './header/header.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
@@ -31,7 +33,6 @@ import { AuthInterceptor } from './shared/auth.interceptor';
     LoginComponent,
     RentalUpdateComponent,
     RentalCreateComponent,
-    RentalDeleteComponent,
     RentalListComponent,
     SidenavComponent,
     HeaderComponent,
@@ -53,6 +54,9 @@ import { AuthInterceptor } from './shared/auth.interceptor';
     MatIconModule,
     MatDividerModule,
     MatMenuModule,
+    HttpClientModule,
+    MatTableModule,
+    MatPaginatorModule
   ],
   providers: [
     {

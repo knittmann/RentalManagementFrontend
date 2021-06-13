@@ -1,36 +1,144 @@
-<!-- <mat-accordion multi="true" *ngIf="rentals.length > 0">
-  <mat-expansion-panel *ngFor="let rental of rentals">
-    <mat-expansion-panel-header>
-      <p>{{ rental.title}}</p>
-    </mat-expansion-panel-header>
-      <p>{{ rental.content}}</p>
-      <mat-action-row>
-        <button mat-button color="primary">EDIT</button>
-        <button mat-button color="warn">DELETE</button>
-      </mat-action-row>
-  </mat-expansion-panel>
-</mat-accordion> -->
 <table class="table">
   <thead>
-    <tr>
+    <tr name="subject">
+      <th scope="col">No.</th>
       <th scope="col">ID</th>
-      <th scope="col">First Name</th>
-      <th scope="col">Last Name</th>
-      <th scope="col">Department</th>
-      <th scope="col">Salary</th>
+      <th scope="col">Receive Date / Hours</th>
+      <th scope="col">Return Date / Hours</th>
+      <th scope="col">Rate Type</th>
+      <th scope="col">Equipment - Category</th>
+      <th scope="col">Equipment - Make</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td >id</td>
-      <td>first name</td>
-      <td>lastName</td>
-      <td>department</td>
-      <td>salary</td>
+    <tr *ngFor="let rental of rentals; let i = index" align="center">
+      <td>{{i+1}}</td>
+      <td>{{rental._id}}</td>
+      <td>{{rental.receive_date}} / {{rental.receive_hours}}</td>
+      <td>{{rental.return_date}} / {{rental.return_hours}}</td>
+      <td>{{rental.rate_type}}</td>
+      <td> {{rental.equipment[0].category}} </td>
+      <td>{{rental.equipment[0].make}}</td>
       <td>
-        <button mat-raised-button color="primary">Edit</button>
-        <button mat-raised-button color="warn">Delete</button>
+        <button mat-raised-button color="primary"(click)="updateRental(rental)">Edit</button>
+        <button mat-raised-button color="warn" (click)="deleteRental(rental)">Delete</button>
       </td>
     </tr>
   </tbody>
 </table>
+
+<!-- *ngFor="let rental of rentals; let i=index" -->
+<!-- <table mat-table [dataSource]="rentals" class="mat-elevation-z8"> -->
+
+   <!-- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
+
+  <!-- <ng-container >
+    <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+    <mat-cell *matCellDef="let rentals"> {{rentals._id}}</mat-cell>
+  </ng-container>
+  <mat-header-row *matHeaderRowDef="rentals"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: rentals;"></mat-row> -->
+
+
+  <!-- <ng-container  matColumnDef="_id">
+    <th mat-header-cell *matHeaderCellDef> id </th>
+    <td mat-cell *matCellDef="let element"> {{element._id}} </td>
+  </ng-container>
+
+   Rental
+  <ng-container matColumnDef="receive_date">
+    <th mat-header-cell *matHeaderCellDef> Receive Date </th>
+    <td mat-cell *matCellDef="let element"> {{element.receive_date}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="receive_hours">
+    <th mat-header-cell *matHeaderCellDef> Receive Hours </th>
+    <td mat-cell *matCellDef="let element"> {{element.receive_hours}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="return_hours">
+    <th mat-header-cell *matHeaderCellDef> Return Hours </th>
+    <td mat-cell *matCellDef="let element"> {{element.return_hours}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="return_date">
+    <th mat-header-cell *matHeaderCellDef> Return Date </th>
+    <td mat-cell *matCellDef="let element"> {{element.return_date}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="rate_type">
+    <th mat-header-cell *matHeaderCellDef> Rate Type </th>
+    <td mat-cell *matCellDef="let element"> {{element.rate_type}} </td>
+  </ng-container>
+
+   Euqipment
+  <ng-container matColumnDef="category">
+    <th mat-header-cell *matHeaderCellDef> Category </th>
+    <td mat-cell *matCellDef="let element"> {{element.equipment[i].category}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="make">
+    <th mat-header-cell *matHeaderCellDef> make </th>
+    <td mat-cell *matCellDef="let element"> {{element.equipment[i].make}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="model">
+    <th mat-header-cell *matHeaderCellDef> model </th>
+    <td mat-cell *matCellDef="let element"> {{element.equipment[i].model}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="rate_per_day">
+    <th mat-header-cell *matHeaderCellDef> rate_per_day </th>
+    <td mat-cell *matCellDef="let element"> {{element.equipment[i].rate_per_day}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="rate_per_week">
+    <th mat-header-cell *matHeaderCellDef> Rate per week </th>
+    <td mat-cell *matCellDef="let element"> {{element.equipment[i].rate_per_week}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="rate_per_month">
+    <th mat-header-cell *matHeaderCellDef> Rate per month </th>
+    <td mat-cell *matCellDef="let element"> {{element.equipment[i].rate_per_month}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="serial_number">
+    <th mat-header-cell *matHeaderCellDef> Serial Number </th>
+    <td mat-cell *matCellDef="let element"> {{element.equipment[i].serial_number}} </td>
+  </ng-container>
+
+   Vendor
+  <ng-container matColumnDef="sales_person">
+    <th mat-header-cell *matHeaderCellDef> Sales Person </th>
+    <td mat-cell *matCellDef="let element"> {{element.vendor.sales_person}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="address">
+    <th mat-header-cell *matHeaderCellDef> Address </th>
+    <td mat-cell *matCellDef="let element"> {{element.vendor.address}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="contact">
+    <th mat-header-cell *matHeaderCellDef> Contact </th>
+    <td mat-cell *matCellDef="let element"> {{element.vendor.contact}} </td>
+  </ng-container>
+
+   Invoice
+  <ng-container matColumnDef="invoice_date">
+    <th mat-header-cell *matHeaderCellDef> Invoice Date </th>
+    <td mat-cell *matCellDef="let element"> {{element.invoice.invoice_date}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="amount">
+    <th mat-header-cell *matHeaderCellDef> Amount </th>
+    <td mat-cell *matCellDef="let element"> {{element.invoice.amount}} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: rentals;"></tr> -->
+
+<!-- </table> -->
+

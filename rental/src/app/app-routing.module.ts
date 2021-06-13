@@ -14,7 +14,7 @@ const routes: Routes = [
   { path: 'login', component:LoginComponent},
   { path: 'rental',component:RentalListComponent},
   { path: 'rental-create', component:RentalCreateComponent},
-  { path: 'updateRental/:id', component: RentalUpdateComponent },
+  { path: 'rental-update/:id', component: RentalUpdateComponent },
   { path: '**', component: PagenotfoundComponent}
 ];
 
