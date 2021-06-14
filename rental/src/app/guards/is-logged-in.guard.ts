@@ -13,7 +13,7 @@ export class IsLoggedInGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
       if (!this.authGuardService.isLoggedIn) {
-        alert('You are not authorized to view this page.');
+        alert('You must be logged in to view this page. You are being redirected to the log in page.');
         this.router.navigate(['/login'], { queryParams: {retUrl: route.url}});
         return false;
       }
