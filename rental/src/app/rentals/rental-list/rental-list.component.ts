@@ -1,8 +1,6 @@
 import { Component} from '@angular/core';
-
 import { RentalService } from 'src/app/services/rental/rental.service';
 import { ActivatedRoute, Router } from '@angular/router';
-
 
 @Component({
   selector: 'app-rental-list',
@@ -16,8 +14,6 @@ export class RentalListComponent {
   constructor(public rentalService: RentalService, private route: ActivatedRoute,
     private router: Router){
   }
-
-
 
   ngOnInit(): void {
     this.rentalService.getRentals().subscribe(

@@ -28,6 +28,9 @@ import { AuthInterceptor } from './shared/auth.interceptor';
 import { AuthGuardService } from './services/auth-guard.service';
 import { IsLoggedInGuard } from './guards/is-logged-in.guard';
 import { IsAdminGuard } from './guards/is-admin.guard';
+import { HomeComponent } from './home/home.component';
+import { IntroductionComponent } from './introduction/introduction.component';
+import { HelpComponent } from './help/help.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +42,10 @@ import { IsAdminGuard } from './guards/is-admin.guard';
     RentalListComponent,
     SidenavComponent,
     HeaderComponent,
-    UserListComponent
+    UserListComponent,
+    HomeComponent,
+    IntroductionComponent,
+    HelpComponent
   ],
   imports: [
     BrowserModule,

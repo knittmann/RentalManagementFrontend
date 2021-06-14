@@ -8,9 +8,15 @@ import { RentalListComponent } from './rentals/rental-list/rental-list.component
 import { RentalUpdateComponent } from './rentals/rental-update/rental-update.component';
 import { UserListComponent } from './user/user-list/user-list.component';
 import { IsLoggedInGuard } from './guards/is-logged-in.guard';
+import { HomeComponent } from './home/home.component';
+import { IntroductionComponent } from './introduction/introduction.component';
+import { HelpComponent } from './help/help.component';
 
 const routes: Routes = [
-  { path: '', redirectTo:'',pathMatch: 'full'},
+  { path: '', redirectTo:'home',pathMatch: 'full'},
+  { path: 'home', component:HomeComponent},
+  { path: 'intro', component:IntroductionComponent},
+  { path: 'help', component:HelpComponent},
   { path: 'users', component:UserListComponent, canActivate: [IsLoggedInGuard]},
   { path: 'login', component:LoginComponent},
   { path: 'rental',component:RentalListComponent},
