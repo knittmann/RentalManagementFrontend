@@ -11,6 +11,7 @@ import { IsLoggedInGuard } from './guards/is-logged-in.guard';
 import { HomeComponent } from './home/home.component';
 import { IntroductionComponent } from './introduction/introduction.component';
 import { HelpComponent } from './help/help.component';
+import { IsAdminGuard } from './guards/is-admin.guard';
 
 const routes: Routes = [
   { path: '', redirectTo:'home',pathMatch: 'full'},
@@ -19,9 +20,9 @@ const routes: Routes = [
   { path: 'help', component:HelpComponent},
   { path: 'users', component:UserListComponent, canActivate: [IsLoggedInGuard]},
   { path: 'login', component:LoginComponent},
-  { path: 'rental',component:RentalListComponent},
-  { path: 'rental-create', component:RentalCreateComponent},
-  { path: 'rental-update/:id', component: RentalUpdateComponent },
+  { path: 'rental',component:RentalListComponent, canActivate: [IsLoggedInGuard]},
+  { path: 'rental-create', component:RentalCreateComponent, canActivate: [IsAdminGuard]},
+  { path: 'rental-update/:id', component: RentalUpdateComponent, canActivate: [IsAdminGuard]},
   { path: '**', component: PagenotfoundComponent}
 ];
 
