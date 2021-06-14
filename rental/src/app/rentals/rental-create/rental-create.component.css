@@ -6,3 +6,9 @@ mat-form-field,
 textarea{
   width: 100%;
 }
+
+h2{
+  margin-bottom:30px;
+  font-size:1.6em;
+  text-align: center;
+}

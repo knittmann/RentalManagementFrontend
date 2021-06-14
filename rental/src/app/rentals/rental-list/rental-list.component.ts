@@ -1,17 +1,6 @@
 import { Component} from '@angular/core';
-
-import { Rental } from '../../models/rental.model';
 import { RentalService } from 'src/app/services/rental/rental.service';
 import { ActivatedRoute, Router } from '@angular/router';
-
-
-// const ELEMENT_DATA: Rental[] = [
-//     {receive_date: "Hydrogen", receive_hours: 'Hydrogen', return_hours: "Hydrogen", return_date: "Hydrogen",rate_type:"Hydrogen",
-//     equipment:[{category:"Hydrogen",make:"Hydrogen",model:"Hydrogen",rate_per_day:"Hydrogen",rate_per_month:"Hydrogen",rate_per_week:"Hydrogen",serial_number:"Hydrogen"}],
-//     vendor:{sales_person:"Hydrogen",address:"Hydrogen",contact:"Hydrogen"},
-//     invoice:{amount:"Hydrogen",invoice_date:"Hydrogen"}}
-//   ];
-
 
 @Component({
   selector: 'app-rental-list',
@@ -25,14 +14,6 @@ export class RentalListComponent {
   constructor(public rentalService: RentalService, private route: ActivatedRoute,
     private router: Router){
   }
-
-  displayedColumns: string[] = ['_id','receive_date', 'receive_hours', 'return_hours', 'return_date','rate_type',
-                  '_id','category','make','model','rate_per_day','rate_per_month','rate_per_week','serial_number',
-                  'sales_person','address','contact',
-                  'invoice_date','amount'];
-  // dataSource = ELEMENT_DATA;
-
-
 
   ngOnInit(): void {
     this.rentalService.getRentals().subscribe(
