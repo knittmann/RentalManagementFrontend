@@ -26,6 +26,10 @@ export class RentalUpdateComponent implements OnInit {
           receive_hours: [this.rental.receive_hours, [Validators.required, Validators.minLength(3)]],
           receive_date: [this.rental.receive_date, [Validators.required, Validators.minLength(2)]],
           rate_type: [this.rental.rate_type, [Validators.required, Validators.minLength(2)]],
+          category: [this.rental.equipment[0].category, [Validators.required, Validators.minLength(2)]],
+          make: [this.rental.equipment[0].make, [Validators.required, Validators.minLength(2)]],
+          model: [this.rental.equipment[0].model, [Validators.required, Validators.minLength(2)]],
+          sales_person: [this.rental.vendor.sales_person, [Validators.required, Validators.minLength(2)]],
           amount: [this.rental.invoice.amount, [Validators.required, Validators.pattern('^[0-9]+$')]]
         });
       },
@@ -40,6 +44,10 @@ export class RentalUpdateComponent implements OnInit {
       receive_hours: ['', [Validators.required, Validators.minLength(3)]],
       receive_date: ['', [Validators.required, Validators.minLength(2)]],
       rate_type: ['', [Validators.required, Validators.minLength(2)]],
+      category: ['', [Validators.required, Validators.minLength(2)]],
+      make: ['', [Validators.required, Validators.minLength(2)]],
+      model: ['', [Validators.required, Validators.minLength(2)]],
+      sales_person: ['', [Validators.required, Validators.minLength(2)]],
       amount: [0, [Validators.required, Validators.pattern('^[0-9]+$')]]
     });
 
