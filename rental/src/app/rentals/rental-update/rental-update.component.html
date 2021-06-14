@@ -1,47 +1,92 @@
 <div class="container-fluid">
+  <div id="wrap" ng-app>
   <h2>Update Rental</h2>
   <mat-card>
     <form [formGroup]="updateRentalForm" (ngSubmit)="update(rental._id, rental)">
       <div class="form-group">
-        <label>receive_hours</label>
+        <label>Rental - Receive Hours</label>
         <input type="text" class="form-control" formControlName="receive_hours"
         [class.is-invalid]="rental.receive_hours?.invalid && rental.receive_hours?.touched">
         <div *ngIf="rental.receive_hours?.touched && rental.receive_hours?.errors">
-          <div class="alert alert-danger" *ngIf="rental.receive_hours?.errors?.required">receive_hours is required</div>
-          <div class="alert alert-danger" *ngIf="rental.receive_hours?.errors?.minlength">receive_hours should be at least 3 characters long</div>
+          <div class="alert alert-danger" *ngIf="rental.receive_hours?.errors?.required">Receive Hours is required</div>
+          <div class="alert alert-danger" *ngIf="rental.receive_hours?.errors?.minlength">Receive Hours should be at least 3 characters long</div>
         </div>
       </div>
 
       <div class="form-group">
-        <label>receive_date</label>
+        <label>Rental - Receive Date</label>
         <input type="text" class="form-control" formControlName="receive_date"
         [class.is-invalid]="rental.receive_date?.invalid && rental.receive_date?.touched">
         <div *ngIf="rental.receive_date?.touched && rental.receive_date?.errors">
-          <div class="alert alert-danger" *ngIf="rental.receive_date?.errors?.required">Last Name is required</div>
-          <div class="alert alert-danger" *ngIf="rental.receive_date?.errors?.minlength">Last Name should be at least 3 characters long</div>
+          <div class="alert alert-danger" *ngIf="rental.receive_date?.errors?.required">Receive Datee is required</div>
+          <div class="alert alert-danger" *ngIf="rental.receive_date?.errors?.minlength">Receive Date should be at least 3 characters long</div>
         </div>
       </div>
 
       <div class="form-group">
-        <label>rate_type</label>
+        <label>Rental - Rate Type</label>
         <input type="text" class="form-control" formControlName="rate_type"
         [class.is-invalid]="rental.rate_type?.invalid && rental.rate_type?.touched">
         <div *ngIf="rental.rate_type?.touched && rental.rate_type?.errors">
-          <div class="alert alert-danger" *ngIf="rental.rate_type?.errors?.required">rate_type is required</div>
-          <div class="alert alert-danger" *ngIf="rental.rate_type?.errors?.minlength">rate_type should be at least 2 characters long</div>
+          <div class="alert alert-danger" *ngIf="rental.rate_type?.errors?.required">RateType is required</div>
+          <div class="alert alert-danger" *ngIf="rental.rate_type?.errors?.minlength">Rate Type should be at least 2 characters long</div>
         </div>
       </div>
 
       <div class="form-group">
-        <label>amount</label>
+        <label>Euqipment - Category</label>
+        <input type="text" class="form-control" formControlName="category"
+        [class.is-invalid]="rental.category?.invalid && rental.category?.touched">
+        <div *ngIf="rental.category?.touched && rental.category?.errors">
+          <div class="alert alert-danger" *ngIf="rental.category?.errors?.required">Category is required</div>
+          <div class="alert alert-danger" *ngIf="rental.category?.errors?.pattern">Category must be characters</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Equipment - Make</label>
+        <input type="text" class="form-control" formControlName="make"
+        [class.is-invalid]="rental.make?.invalid && rental.make?.touched">
+        <div *ngIf="rental.make?.touched && rental.make?.errors">
+          <div class="alert alert-danger" *ngIf="rental.make?.errors?.required">Make is required</div>
+          <div class="alert alert-danger" *ngIf="rental.make?.errors?.pattern">Make must be characters</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Equipment - Model</label>
+        <input type="text" class="form-control" formControlName="model"
+        [class.is-invalid]="rental.model?.invalid && rental.model?.touched">
+        <div *ngIf="rental.model?.touched && rental.model?.errors">
+          <div class="alert alert-danger" *ngIf="rental.model?.errors?.required">Model is required</div>
+          <div class="alert alert-danger" *ngIf="rental.model?.errors?.pattern">Model must be characters</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Vendor - Sales Person</label>
+        <input type="text" class="form-control" formControlName="sales_person"
+        [class.is-invalid]="rental.sales_person?.invalid && rental.sales_person?.touched">
+        <div *ngIf="rental.sales_person?.touched && rental.sales_person?.errors">
+          <div class="alert alert-danger" *ngIf="rental.sales_person?.errors?.required">Sales Person is required</div>
+          <div class="alert alert-danger" *ngIf="rental.sales_person?.errors?.pattern">Sales Person must be characters</div>
+        </div>
+      </div>
+
+
+      <div class="form-group">
+        <label>Invoice - Amount</label>
         <input type="text" class="form-control" formControlName="amount"
-        [class.is-invalid]="rental.invoice.amount?.invalid && rental.invoice.amount?.touched">
-        <div *ngIf="rental.invoice.amount?.touched && rental.invoice.amount?.errors">
-          <div class="alert alert-danger" *ngIf="rental.invoice.amount?.errors?.required">amount is required</div>
-          <div class="alert alert-danger" *ngIf="rental.invoice.amount?.errors?.pattern">amount must be Numbers</div>
+        [class.is-invalid]="rental.amount?.invalid && rental.amount?.touched">
+        <div *ngIf="rental.amount?.touched && rental.voice.amount?.errors">
+          <div class="alert alert-danger" *ngIf="rental.amount?.errors?.required">amount is required</div>
+          <div class="alert alert-danger" *ngIf="rental.amount?.errors?.pattern">amount must be Numbers</div>
+        </div>
       </div>
-      </div>
-      <button mat-flat-button color="accent" [disabled]="!updateRentalForm.valid">Submit Form</button>
+      <br>
+      <button mat-flat-button color="accent" [disabled]="!updateRentalForm.valid">Submit Form</button> &nbsp;&nbsp;
+      <button mat-flat-button color="primary" (click)="onBack()">Back</button>
     </form>
  </mat-card>
+</div>
 </div>
