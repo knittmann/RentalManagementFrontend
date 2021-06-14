@@ -37,7 +37,7 @@ export class AuthGuardService {
           localStorage.setItem('role', res.role);
           this.changeCurrentUser();
           console.log(this.currentUser);
-          this.router.navigate(['rental/']);
+          this.router.navigate(['home']);
         })
       })
   }
