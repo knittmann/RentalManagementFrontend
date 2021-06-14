@@ -24,13 +24,12 @@ export class RentalService {
   }
 
   public addRental(rental: any): Observable<Rental[]> {
-    console.log(rental);
     return this.http.post<Rental[]>(this._url + '/new', rental)
     .pipe(catchError(this.errorHandler));
   }
 
   public updateRental(id: string, rental: any): Observable<Rental[]> {
-    console.log(rental);
+    console.log("updateRental: "+rental);
     console.log(this._url + '/' + id);
     return this.http.put<Rental[]>(this._url  + '/' + id, rental)
     .pipe(catchError(this.errorHandler));
