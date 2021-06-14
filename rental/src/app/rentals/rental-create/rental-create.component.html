@@ -2,31 +2,48 @@
 <mat-card>
   <form (submit)="onAddRental(addRentalForm)" #addRentalForm="ngForm">
     <!-- Rental start-->
+    <div class="subject">Rental</div>
     <mat-form-field>
-        <input matInput type="text" name="receive_date" ngModel required placeholder="Rental - Receive Date" #receive_date="ngModel">
-        <mat-error *ngIf="receive_date.invalid">Please enter a receive date.</mat-error>
+      <!-- <input matInput [(ngModel)]="receive_date" [matDatepicker]="receive_date"  required placeholder="Rental - Receive Date">
+      <mat-datepicker-toggle matSuffix [for]="receive_date"></mat-datepicker-toggle>
+      <mat-datepicker #receive_date>
+        <mat-datepicker-actions>
+          <button mat-button matDatepickerCancel>Cancel</button>
+          <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+        </mat-datepicker-actions>
+      </mat-datepicker> -->
+      <input matInput type="text" name="receive_date" ngModel required placeholder="Rental - Receive Date"
+        #receive_date="ngModel">
+      <mat-error *ngIf="receive_date.invalid">Please enter a receive date.</mat-error>
     </mat-form-field>
     <mat-form-field>
-      <input matInput type="text" name="receive_hours" ngModel required placeholder="Rental - Receive hours" #receive_hours="ngModel">
+      <input matInput type="text" name="receive_hours" ngModel required placeholder="Rental - Receive hours"
+        #receive_hours="ngModel">
       <mat-error *ngIf="receive_hours.invalid">Please enter a receive hours.</mat-error>
     </mat-form-field>
     <mat-form-field>
-      <input matInput type="text" name="return_date" ngModel required placeholder="Rental - Return date" #return_date="ngModel">
+      <input matInput type="text" name="return_date" ngModel required placeholder="Rental - Return date"
+        #return_date="ngModel">
       <mat-error *ngIf="return_date.invalid">Please enter a return date.</mat-error>
     </mat-form-field>
     <mat-form-field>
-      <input matInput type="text" name="return_hours" ngModel required placeholder="Rental - Return hours" #return_hours="ngModel">
+      <input matInput type="text" name="return_hours" ngModel required placeholder="Rental - Return hours"
+        #return_hours="ngModel">
       <mat-error *ngIf="return_hours.invalid">Please enter a return hours.</mat-error>
     </mat-form-field>
     <mat-form-field>
-      <input matInput type="text" name="rate_type" ngModel required placeholder="Rental - Rate type" #rate_type="ngModel">
+      <input matInput type="text" name="rate_type" ngModel required placeholder="Rental - Rate type"
+        #rate_type="ngModel">
       <mat-error *ngIf="rate_type.invalid">Please enter a Rate type.</mat-error>
     </mat-form-field>
+
     <!-- Rental end-->
 
     <!-- Equipment start-->
+    <div class="subject">Equipment</div>
     <mat-form-field>
-      <input matInput type="text" name="category" ngModel required placeholder="Equipment - Category" #category="ngModel">
+      <input matInput type="text" name="category" ngModel required placeholder="Equipment - Category"
+        #category="ngModel">
       <mat-error *ngIf="category.invalid">Please enter a Category.</mat-error>
     </mat-form-field>
     <mat-form-field>
@@ -38,26 +55,33 @@
       <mat-error *ngIf="model.invalid">Please enter a Model.</mat-error>
     </mat-form-field>
     <mat-form-field>
-      <input matInput type="text" name="serial_number" ngModel required placeholder="Equipment - Serial Number" #serial_number="ngModel">
+      <input matInput type="text" name="serial_number" ngModel required placeholder="Equipment - Serial Number"
+        #serial_number="ngModel">
       <mat-error *ngIf="serial_number.invalid">Please enter a Serial Number.</mat-error>
     </mat-form-field>
     <mat-form-field>
-      <input matInput type="text" name="rate_per_day" ngModel required placeholder="Equipment - rate per day" #rate_per_day="ngModel">
+      <input matInput type="text" name="rate_per_day" ngModel required placeholder="Equipment - rate per day"
+        #rate_per_day="ngModel">
       <mat-error *ngIf="rate_per_day.invalid">Please enter a Rate per day.</mat-error>
     </mat-form-field>
     <mat-form-field>
-      <input matInput type="text" name="rate_per_week" ngModel required placeholder="Equipment - Rate per week" #rate_per_week="ngModel">
+      <input matInput type="text" name="rate_per_week" ngModel required placeholder="Equipment - Rate per week"
+        #rate_per_week="ngModel">
       <mat-error *ngIf="rate_per_week.invalid">Please enter a Rate per week.</mat-error>
     </mat-form-field>
     <mat-form-field>
-      <input matInput type="text" name="rate_per_month" ngModel required placeholder="Equipment - Rate per month" #rate_per_month="ngModel">
+      <input matInput type="text" name="rate_per_month" ngModel required placeholder="Equipment - Rate per month"
+        #rate_per_month="ngModel">
       <mat-error *ngIf="rate_per_month.invalid">Please enter a Rate per month.</mat-error>
     </mat-form-field>
+
     <!-- Equipment end-->
 
     <!-- Vendor start-->
+    <div class="subject">Vendor</div>
     <mat-form-field>
-      <input matInput type="text" name="sales_person" ngModel required placeholder="Vendor - Sales person" #sales_person="ngModel">
+      <input matInput type="text" name="sales_person" ngModel required placeholder="Vendor - Sales person"
+        #sales_person="ngModel">
       <mat-error *ngIf="sales_person.invalid">Please enter a Sales person.</mat-error>
     </mat-form-field>
     <mat-form-field>
@@ -72,8 +96,10 @@
     <!-- Vendor end-->
 
     <!-- Invoice start-->
+    <div class="subject">Invoice</div>
     <mat-form-field>
-      <input matInput type="text" name="invoice_date" ngModel required placeholder="Invoice - Invoice date" #invoice_date="ngModel">
+      <input matInput type="text" name="invoice_date" ngModel required placeholder="Invoice - Invoice date"
+        #invoice_date="ngModel">
       <mat-error *ngIf="invoice_date.invalid">Please enter an Invoice date.</mat-error>
     </mat-form-field>
     <mat-form-field>

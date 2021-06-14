@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { AppComponent } from './app.component';
-import { PagenotfoundComponent } from './pagenotfound/pagenotfound.components';
+import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { RentalCreateComponent } from './rentals/rental-create/rental-create.component';
 import { RentalListComponent } from './rentals/rental-list/rental-list.component';
 import { RentalUpdateComponent } from './rentals/rental-update/rental-update.component';

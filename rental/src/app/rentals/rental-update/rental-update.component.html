@@ -24,6 +24,26 @@
       </div>
 
       <div class="form-group">
+        <label>Rental - Return Hours</label>
+        <input type="text" class="form-control" formControlName="return_hours"
+        [class.is-invalid]="rental.return_hours?.invalid && rental.return_hours?.touched">
+        <div *ngIf="rental.return_hours?.touched && rental.return_hours?.errors">
+          <div class="alert alert-danger" *ngIf="rental.return_hours?.errors?.required">Return Hours is required</div>
+          <div class="alert alert-danger" *ngIf="rental.return_hours?.errors?.minlength">Return Hours should be at least 3 characters long</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Rental - Return Date</label>
+        <input type="text" class="form-control" formControlName="return_date"
+        [class.is-invalid]="rental.return_date?.invalid && rental.return_date?.touched">
+        <div *ngIf="rental.return_date?.touched && rental.return_date?.errors">
+          <div class="alert alert-danger" *ngIf="rental.return_date?.errors?.required">Return Datee is required</div>
+          <div class="alert alert-danger" *ngIf="rental.return_date?.errors?.minlength">Return Date should be at least 3 characters long</div>
+        </div>
+      </div>
+
+      <div class="form-group">
         <label>Rental - Rate Type</label>
         <input type="text" class="form-control" formControlName="rate_type"
         [class.is-invalid]="rental.rate_type?.invalid && rental.rate_type?.touched">
@@ -34,7 +54,7 @@
       </div>
 
       <div class="form-group">
-        <label>Euqipment - Category</label>
+        <label>Equipment - Category</label>
         <input type="text" class="form-control" formControlName="category"
         [class.is-invalid]="rental.category?.invalid && rental.category?.touched">
         <div *ngIf="rental.category?.touched && rental.category?.errors">

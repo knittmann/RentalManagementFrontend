@@ -50,7 +50,9 @@ export class RentalUpdateComponent implements OnInit {
       (data) => {this.rental = data; console.log(data);
         this.updateRentalForm = this.fb.group({
           receive_hours: [this.rental.receive_hours, [Validators.required, Validators.minLength(3)]],
-          receive_date: [this.rental.receive_date, [Validators.required, Validators.minLength(2)]],
+          receive_date: [this.rental.receive_date, [Validators.required, Validators.minLength(3)]],
+          return_hours: [this.rental.receive_hours, [Validators.required, Validators.minLength(3)]],
+          return_date: [this.rental.receive_date, [Validators.required, Validators.minLength(3)]],
           rate_type: [this.rental.rate_type, [Validators.required, Validators.minLength(2)]],
           category: [this.rental.equipment[0].category, [Validators.required, Validators.minLength(2)]],
           make: [this.rental.equipment[0].make, [Validators.required, Validators.minLength(2)]],
@@ -69,6 +71,8 @@ export class RentalUpdateComponent implements OnInit {
     public updateRentalForm = this.fb.group({
       receive_hours: ['', [Validators.required, Validators.minLength(3)]],
       receive_date: ['', [Validators.required, Validators.minLength(2)]],
+      return_hours: ['', [Validators.required, Validators.minLength(3)]],
+      return_date: ['', [Validators.required, Validators.minLength(2)]],
       rate_type: ['', [Validators.required, Validators.minLength(2)]],
       category: ['', [Validators.required, Validators.minLength(2)]],
       make: ['', [Validators.required, Validators.minLength(2)]],
@@ -80,8 +84,8 @@ export class RentalUpdateComponent implements OnInit {
   update(rantelId: any, rental: any){
     this.rentalData.receive_date = this.updateRentalForm.value.receive_date;
     this.rentalData.receive_hours = this.updateRentalForm.value.receive_hours;
-    this.rentalData.return_date = this.rental.return_date;
-    this.rentalData.return_hours = this.rental.return_hours;
+    this.rentalData.return_date = this.updateRentalForm.value.return_hours;
+    this.rentalData.return_hours = this.updateRentalForm.value.receive_hours;
     this.rentalData.rate_type = this.updateRentalForm.value.rate_type;
 
     this.rentalData.equipment[0].category = this.updateRentalForm.value.category;
