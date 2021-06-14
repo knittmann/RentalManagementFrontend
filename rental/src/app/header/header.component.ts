@@ -10,7 +10,7 @@ import { LocalStorageService } from "../services/local-storage.service";
 })
 export class HeaderComponent{
 
-  public user: any | undefined;
+  public user: any = "User";
   public role: any | undefined;
   userSubscription: any;
   roleSubscription: any;
