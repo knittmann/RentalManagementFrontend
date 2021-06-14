@@ -2,12 +2,14 @@
   <thead>
     <tr name="subject">
       <th scope="col">No.</th>
-      <th scope="col">ID</th>
       <th scope="col">Receive Date / Hours</th>
       <th scope="col">Return Date / Hours</th>
       <th scope="col">Rate Type</th>
       <th scope="col">Equipment - Category</th>
       <th scope="col">Equipment - Make</th>
+      <th scope="col">Equipment - Model</th>
+      <th scope="col">Vendor - Sales Person</th>
+      <th scope="col">Inovice - Amount</th>
       <th scope="col"></th>
       <th scope="col"></th>
     </tr>
@@ -15,12 +17,14 @@
   <tbody>
     <tr *ngFor="let rental of rentals; let i = index" align="center">
       <td>{{i+1}}</td>
-      <td>{{rental._id}}</td>
       <td>{{rental.receive_date}} / {{rental.receive_hours}}</td>
       <td>{{rental.return_date}} / {{rental.return_hours}}</td>
       <td>{{rental.rate_type}}</td>
       <td> {{rental.equipment[0].category}} </td>
       <td>{{rental.equipment[0].make}}</td>
+      <td>{{rental.equipment[0].model}}</td>
+      <td>{{rental.vendor.sales_person}}</td>
+      <td>{{rental.invoice.amount}}</td>
       <td>
         <button mat-raised-button color="primary"(click)="updateRental(rental)">Edit</button>
         <button mat-raised-button color="warn" (click)="deleteRental(rental)">Delete</button>
