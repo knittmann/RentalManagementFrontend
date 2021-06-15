@@ -96,14 +96,14 @@ export class RentalUpdateComponent implements OnInit {
       make: ['', [Validators.required, Validators.minLength(2)]],
       model: ['', [Validators.required, Validators.minLength(2)]],
       sales_person: ['', [Validators.required, Validators.minLength(2)]],
-      amount: [0, [Validators.required, Validators.pattern('^[0-9]+$')]]
+      amount: ['', [Validators.required, Validators.pattern('[0-9]{2}\.[0-9]{2}$')]]
     });
 
   update(rantelId: any, rental: any){
     this.rentalData.receive_date = this.updateRentalForm.value.receive_date;
     this.rentalData.receive_hours = this.updateRentalForm.value.receive_hours;
-    this.rentalData.return_date = this.updateRentalForm.value.return_hours;
-    this.rentalData.return_hours = this.updateRentalForm.value.receive_hours;
+    this.rentalData.return_date = this.updateRentalForm.value.return_date;
+    this.rentalData.return_hours = this.updateRentalForm.value.return_hours;
     this.rentalData.rate_type = this.updateRentalForm.value.rate_type;
 
     this.rentalData.equipment[0].category = this.updateRentalForm.value.category;
