@@ -26,8 +26,8 @@
       <td>{{rental.vendor.sales_person}}</td>
       <td>{{rental.invoice.amount}}</td>
       <td>
-        <button mat-raised-button color="primary"(click)="updateRental(rental)">Edit</button>
-        <button mat-raised-button color="warn" (click)="deleteRental(rental)">Delete</button>
+        <button [disabled]="isDisabled()" mat-raised-button color="primary"(click)="updateRental(rental)">Edit</button>
+        <button [disabled]="isDisabled()" mat-raised-button color="warn" (click)="deleteRental(rental)">Delete</button>
       </td>
     </tr>
   </tbody>

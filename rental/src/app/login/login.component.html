@@ -1,8 +1,22 @@
-<h1>Login</h1>
+<h2>Log In</h2>
 
-<div class="row">
+<mat-card>
     <form [formGroup]="loginForm" (ngSubmit)="onLoginSubmit()">
-        <div class="form-group">
+        <mat-form-field>
+            <input matInput type="text" name="username" formControlName="username" placeholder="User Name" required>
+            <mat-error *ngIf="loginForm.controls.username.touched && loginForm.controls.username.invalid">
+              <span *ngIf="loginForm.controls.username.errors?.required">Enter your user name.</span>
+              <span *ngIf="loginForm.controls.username.errors?.minlength">User name must be at least 5 characters.</span>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput type="password" name="password" formControlName="password" placeholder="Password" required>
+            <mat-error *ngIf="loginForm.controls.password.touched && loginForm.controls.password.invalid">
+              <span *ngIf="loginForm.controls.password.errors?.required">Enter your password.</span>
+              <span *ngIf="loginForm.controls.password.errors?.minlength">Password must be at least 4 characters.</span>
+            </mat-error>
+        </mat-form-field>
+        <!-- <div class="form-group">
             <label>
                 User Name: 
             </label>
@@ -13,10 +27,10 @@
                 Password: 
             </label>
             <input class="form-control" type='password' formControlName="password">
-        </div>
-            <button class="button" type="submit">Log In</button>
+        </div> -->
+            <button mat-raised-button color="accent" type="submit">Log In</button>
     </form>
-</div>
+</mat-card>
 
 <!-- <form *ngIf="addEmployeeForm" [formGroup]="addEmployeeForm" (ngSubmit)="onAddSubmit(employeeList)" novalidate>
     <div class="form-group">

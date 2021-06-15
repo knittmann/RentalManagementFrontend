@@ -1,6 +1,7 @@
 import { Component} from '@angular/core';
 import { RentalService } from 'src/app/services/rental/rental.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuthGuardService } from 'src/app/services/auth-guard.service';
 
 @Component({
   selector: 'app-rental-list',
@@ -11,8 +12,12 @@ export class RentalListComponent {
 
   public rentals:any;
   errorMsg: any;
+
+  public role: any | undefined;
+  roleSubscription: any;
+
   constructor(public rentalService: RentalService, private route: ActivatedRoute,
-    private router: Router){
+    private router: Router, private authGuardService: AuthGuardService){
   }
 
   ngOnInit(): void {
@@ -20,7 +25,10 @@ export class RentalListComponent {
       (data) => {this.rentals = data; console.log(data);}, //success
       (error) =>this.errorMsg = error, // error
       () => console.log("Completed")
-    )
+    );
+    this.roleSubscription = this.authGuardService.currentUserRoleChange.subscribe((value) => {
+      this.role = value;
+    });
   }
 
   updateRental(rental: any){
@@ -34,5 +42,14 @@ export class RentalListComponent {
         (error) => this.errorMsg = error
       );
     })
+  }
+
+  isDisabled(): boolean {
+    const userRole = localStorage.getItem('role');
+    if (userRole == 'staff') {
+      return true;
+    } else {
+      return false;
+    }
   }
 }

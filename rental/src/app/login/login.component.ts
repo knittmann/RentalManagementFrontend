@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthGuardService } from 'src/app/services/auth-guard.service';
 import { UserService } from 'src/app/services/user/user.service';
@@ -26,8 +26,8 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.loginForm= this.fb.group({
-      username: [''],
-      password: ['']
+      username: ['', [Validators.required, Validators.minLength(5)]],
+      password: ['', [Validators.required, Validators.minLength(4)]]
     });
   }
 

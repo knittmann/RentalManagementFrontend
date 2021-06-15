@@ -1,0 +1,23 @@
+:host{
+    display: block;
+    margin-top: 1rem;
+  }
+  
+  .info-text{
+    text-align: center;
+  }
+  
+  table {
+    width: 100%;
+    table-layout: auto;
+  }
+  
+  
+  .mat-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+  
+  td, th {
+    width: 9%;
+  }
