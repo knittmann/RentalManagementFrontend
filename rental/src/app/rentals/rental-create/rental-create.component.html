@@ -2,11 +2,12 @@
 <mat-card>
   <form [formGroup]="addRentalForm" (submit)="onAddRental()">
 
-     <div class="subject">Rental</div>
-     <br>
+    <div class="subject">Rental</div>
+    <br>
     <!-- Rental start-->
     <mat-form-field>
-        <input matInput formControlName="receive_date" [matDatepicker]="receive_date"  placeholder="Rental - Receive Date" required>
+      <input matInput formControlName="receive_date" [matDatepicker]="receive_date" placeholder="Rental - Receive Date"
+        required>
       <mat-datepicker-toggle matSuffix [for]="receive_date"></mat-datepicker-toggle>
       <mat-datepicker #receive_date>
         <mat-datepicker-actions>
@@ -19,29 +20,32 @@
       </mat-error>
     </mat-form-field>
     <mat-form-field>
-      <input matInput type="text" name="receive_hours" formControlName="receive_hours" placeholder="Rental - Receive hours" required>
+      <input matInput type="text" name="receive_hours" formControlName="receive_hours"
+        placeholder="Rental - Receive hours" required>
       <mat-error *ngIf="addRentalForm.controls.receive_hours.touched && addRentalForm.controls.receive_hours.invalid">
         <span *ngIf="addRentalForm.controls.receive_hours.errors?.required">Enter the Receive Hours.</span>
       </mat-error>
     </mat-form-field>
     <mat-form-field>
-      <input matInput formControlName="return_date" [matDatepicker]="return_date"  placeholder="Rental - Return Date" required>
-    <mat-datepicker-toggle matSuffix [for]="return_date"></mat-datepicker-toggle>
-    <mat-datepicker #return_date>
-      <mat-datepicker-actions>
-        <button mat-button matDatepickerCancel>Cancel</button>
-        <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
-      </mat-datepicker-actions>
-    </mat-datepicker>
-    <mat-error *ngIf="addRentalForm.controls.return_date.touched && addRentalForm.controls.return_date.invalid">
-      <span *ngIf="addRentalForm.controls.return_date.errors?.required">Choose the receive date.</span>
-    </mat-error>
-  </mat-form-field>
+      <input matInput formControlName="return_date" [matDatepicker]="return_date" placeholder="Rental - Return Date"
+        required>
+      <mat-datepicker-toggle matSuffix [for]="return_date"></mat-datepicker-toggle>
+      <mat-datepicker #return_date>
+        <mat-datepicker-actions>
+          <button mat-button matDatepickerCancel>Cancel</button>
+          <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+        </mat-datepicker-actions>
+      </mat-datepicker>
+      <mat-error *ngIf="addRentalForm.controls.return_date.touched && addRentalForm.controls.return_date.invalid">
+        <span *ngIf="addRentalForm.controls.return_date.errors?.required">Choose the receive date.</span>
+      </mat-error>
+    </mat-form-field>
     <mat-form-field>
-      <input matInput type="text" name="return_hours"  formControlName="return_hours" placeholder="Rental - Return hours" required>
-        <mat-error *ngIf="addRentalForm.controls.return_hours.touched && addRentalForm.controls.return_hours.invalid">
-          <span *ngIf="addRentalForm.controls.return_hours.errors?.required">Enter the Return Hours.</span>
-        </mat-error>
+      <input matInput type="text" name="return_hours" formControlName="return_hours" placeholder="Rental - Return hours"
+        required>
+      <mat-error *ngIf="addRentalForm.controls.return_hours.touched && addRentalForm.controls.return_hours.invalid">
+        <span *ngIf="addRentalForm.controls.return_hours.errors?.required">Enter the Return Hours.</span>
+      </mat-error>
     </mat-form-field>
     <mat-form-field appearance="fill">
       <mat-label>Rate Type</mat-label>
@@ -85,28 +89,32 @@
       </mat-error>
     </mat-form-field>
     <mat-form-field>
-      <input matInput type="text" name="serial_number"  formControlName="serial_number" placeholder="Equipment - Serial Number" required>
-        <mat-error *ngIf="addRentalForm.controls.serial_number.touched && addRentalForm.controls.serial_number.invalid">
-          <span *ngIf="addRentalForm.controls.serial_number.errors?.required">Enter the serial_number.</span>
-        </mat-error>
+      <input matInput type="text" name="serial_number" formControlName="serial_number"
+        placeholder="Equipment - Serial Number" required>
+      <mat-error *ngIf="addRentalForm.controls.serial_number.touched && addRentalForm.controls.serial_number.invalid">
+        <span *ngIf="addRentalForm.controls.serial_number.errors?.required">Enter the serial_number.</span>
+      </mat-error>
     </mat-form-field>
     <mat-form-field>
-      <input matInput type="text" name="rate_per_day"   formControlName="rate_per_day" placeholder="Equipment - rate per day" required>
-        <mat-error *ngIf="addRentalForm.controls.rate_per_day.touched && addRentalForm.controls.rate_per_day.invalid">
-          <span *ngIf="addRentalForm.controls.rate_per_day.errors?.required">Enter the Rate Per Day.</span>
-        </mat-error>
+      <input matInput type="text" name="rate_per_day" formControlName="rate_per_day"
+        placeholder="Equipment - rate per day" required>
+      <mat-error *ngIf="addRentalForm.controls.rate_per_day.touched && addRentalForm.controls.rate_per_day.invalid">
+        <span *ngIf="addRentalForm.controls.rate_per_day.errors?.required">Enter the Rate Per Day.</span>
+      </mat-error>
     </mat-form-field>
     <mat-form-field>
-      <input matInput type="text" name="rate_per_week"  formControlName="rate_per_week" placeholder="Equipment - Rate per week" required>
-        <mat-error *ngIf="addRentalForm.controls.rate_per_week.touched && addRentalForm.controls.rate_per_week.invalid">
-          <span *ngIf="addRentalForm.controls.rate_per_week.errors?.required">Enter the Rate Type.</span>
-        </mat-error>
+      <input matInput type="text" name="rate_per_week" formControlName="rate_per_week"
+        placeholder="Equipment - Rate per week" required>
+      <mat-error *ngIf="addRentalForm.controls.rate_per_week.touched && addRentalForm.controls.rate_per_week.invalid">
+        <span *ngIf="addRentalForm.controls.rate_per_week.errors?.required">Enter the Rate Type.</span>
+      </mat-error>
     </mat-form-field>
     <mat-form-field>
-      <input matInput type="text" name="rate_per_month" formControlName="rate_per_month" placeholder="Equipment - Rate per month">
-        <mat-error *ngIf="addRentalForm.controls.rate_per_month.touched && addRentalForm.controls.rate_per_month.invalid">
-          <span *ngIf="addRentalForm.controls.rate_per_month.errors?.required">Enter the Rate per month.</span>
-        </mat-error>
+      <input matInput type="text" name="rate_per_month" formControlName="rate_per_month"
+        placeholder="Equipment - Rate per month">
+      <mat-error *ngIf="addRentalForm.controls.rate_per_month.touched && addRentalForm.controls.rate_per_month.invalid">
+        <span *ngIf="addRentalForm.controls.rate_per_month.errors?.required">Enter the Rate per month.</span>
+      </mat-error>
     </mat-form-field>
     <!-- Equipment end-->
 
@@ -114,19 +122,20 @@
     <div class="subject">Vendor</div>
     <br>
     <mat-form-field>
-      <input matInput type="text" name="sales_person"  formControlName="sales_person" placeholder="Vendor - Sales person" required>
+      <input matInput type="text" name="sales_person" formControlName="sales_person" placeholder="Vendor - Sales person"
+        required>
       <mat-error *ngIf="addRentalForm.controls.sales_person.touched && addRentalForm.controls.sales_person.invalid">
         <span *ngIf="addRentalForm.controls.sales_person.errors?.required">Enter the Sales Person.</span>
       </mat-error>
     </mat-form-field>
     <mat-form-field>
-      <input matInput type="text" name="address" formControlName="address"  placeholder="Vendor - Address" required>
+      <input matInput type="text" name="address" formControlName="address" placeholder="Vendor - Address" required>
       <mat-error *ngIf="addRentalForm.controls.address.touched && addRentalForm.controls.address.invalid">
         <span *ngIf="addRentalForm.controls.address.errors?.required">Enter the address.</span>
       </mat-error>
     </mat-form-field>
     <mat-form-field>
-      <input matInput type="text" name="contact" formControlName="contact"  placeholder="Vendor - Contact" required>
+      <input matInput type="text" name="contact" formControlName="contact" placeholder="Vendor - Contact" required>
       <mat-error *ngIf="addRentalForm.controls.contact.touched && addRentalForm.controls.contact.invalid">
         <span *ngIf="addRentalForm.controls.contact.errors?.required">Enter the Contact.</span>
       </mat-error>
@@ -138,13 +147,14 @@
     <div class="subject">Invoice</div>
     <br>
     <mat-form-field>
-      <input matInput type="text" name="invoice_date" formControlName="invoice_date"  placeholder="Invoice - Invoice date" required>
+      <input matInput type="text" name="invoice_date" formControlName="invoice_date"
+        placeholder="Invoice - Invoice date" required>
       <mat-error *ngIf="addRentalForm.controls.invoice_date.touched && addRentalForm.controls.invoice_date.invalid">
         <span *ngIf="addRentalForm.controls.invoice_date.errors?.required">Enter the Invoice Date.</span>
       </mat-error>
     </mat-form-field>
     <mat-form-field>
-      <input matInput type="text" name="amount" formControlName="amount"  placeholder="Invoice - Amount" required>
+      <input matInput type="text" name="amount" formControlName="amount" placeholder="Invoice - Amount" required>
       <mat-error *ngIf="addRentalForm.controls.amount.touched && addRentalForm.controls.amount.invalid">
         <span *ngIf="addRentalForm.controls.amount.errors?.required">Enter the Amount.</span>
         <span *ngIf="addRentalForm.controls.amount.errors?.pattern">Amount must be number.</span>

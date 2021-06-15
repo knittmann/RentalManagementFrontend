@@ -15,6 +15,24 @@ export class RentalUpdateComponent implements OnInit {
   errorMsg: any;
   rentals: any;
 
+  rates: string []= [
+    "Per Day",
+    "Per Week",
+    "Per Month"
+  ];
+
+  categories:string[] = [
+    "Excavators",
+    "Backhoe Loaders",
+    "Bulldozers",
+    "Skid-Steer Loaders",
+    "Motor Graders",
+    "Crawler Loaders",
+    "Trenchers",
+    "Scrapers",
+    "Common Dump Trucks",
+  ];
+
   rentalData = {
     receive_date:"",
     receive_hours:"",
