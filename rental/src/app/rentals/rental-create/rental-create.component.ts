@@ -1,7 +1,8 @@
 import { Component, OnInit} from "@angular/core";
-import { FormBuilder, NgForm } from "@angular/forms";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { RentalService } from "src/app/services/rental/rental.service";
+
 
 @Component({
   selector: 'app-rental-create',
@@ -11,6 +12,26 @@ import { RentalService } from "src/app/services/rental/rental.service";
 export class RentalCreateComponent implements OnInit{
   rentals: any;
   errorMsg : any;
+  addRentalForm!: FormGroup;
+
+
+  rates: string []= [
+    "Per Day",
+    "Per Week",
+    "Per Month"
+  ];
+
+  categories:string[] = [
+    "Excavators",
+    "Backhoe Loaders",
+    "Bulldozers",
+    "Skid-Steer Loaders",
+    "Motor Graders",
+    "Crawler Loaders",
+    "Trenchers",
+    "Scrapers",
+    "Common Dump Trucks",
+  ];
 
   rentalData = {
     receive_date:"",
@@ -19,7 +40,7 @@ export class RentalCreateComponent implements OnInit{
     return_hours:"",
     rate_type:"",
     equipment:[{
-        category:"",
+      category:"",
         make:"",
         model:"",
         serial_number:"",
@@ -28,7 +49,7 @@ export class RentalCreateComponent implements OnInit{
         rate_per_month:""
     }],
     "vendor":{
-        sales_person:"",
+      sales_person:"",
         address:"",
         contact:""
     },
@@ -43,32 +64,58 @@ export class RentalCreateComponent implements OnInit{
   }
 
   ngOnInit(){
+    this.addRentalForm = this.fb.group({
+      // Rental
+      receive_date: ['', Validators.required],
+      receive_hours: ['', Validators.required],
+      return_date: ['', Validators.required],
+      return_hours: ['', Validators.required],
+      rate_type: ['', Validators.required],
+      // equipment
+      category: ['', Validators.required],
+      make: ['', Validators.required],
+      model: ['', Validators.required],
+      serial_number: ['', Validators.required],
+      rate_per_day: ['', Validators.required],
+      rate_per_week: ['', Validators.required],
+      rate_per_month: ['', Validators.required],
+      //vendor
+      sales_person: ['', Validators.required],
+      address: ['', Validators.required],
+      contact: ['', Validators.required],
+      //invoice
+      invoice_date: ['', Validators.required],
+      amount: ['', [Validators.required, Validators.pattern('^[0-9]+$')]]
+    });
   }
 
-  onAddRental(addRentalForm: NgForm){
-    if( addRentalForm.invalid){
+
+
+  onAddRental(){
+    if(this.addRentalForm.invalid){
       return;
     }
-    this.rentalData.receive_date = addRentalForm.value.receive_date
-    this.rentalData.receive_hours = addRentalForm.value.receive_hours
-    this.rentalData.return_date = addRentalForm.value.return_date
-    this.rentalData.return_hours = addRentalForm.value.return_hours
-    this.rentalData.rate_type = addRentalForm.value.rate_type
 
-    this.rentalData.equipment[0].category = addRentalForm.value.category
-    this.rentalData.equipment[0].make = addRentalForm.value.make
-    this.rentalData.equipment[0].model = addRentalForm.value.model
-    this.rentalData.equipment[0].rate_per_day = addRentalForm.value.rate_per_day
-    this.rentalData.equipment[0].rate_per_month = addRentalForm.value.rate_per_month
-    this.rentalData.equipment[0].rate_per_week = addRentalForm.value.rate_per_week
-    this.rentalData.equipment[0].serial_number = addRentalForm.value.serial_number
+    this.rentalData.receive_date = this.addRentalForm.value.receive_date
+    this.rentalData.receive_hours = this.addRentalForm.value.receive_hours
+    this.rentalData.return_date = this.addRentalForm.value.return_date
+    this.rentalData.return_hours = this.addRentalForm.value.return_hours
+    this.rentalData.rate_type = this.addRentalForm.value.rate_type
 
-    this.rentalData.invoice.amount = addRentalForm.value.amount
-    this.rentalData.invoice.invoice_date = addRentalForm.value.invoice_date
+    this.rentalData.equipment[0].category = this.addRentalForm.value.category
+    this.rentalData.equipment[0].make = this.addRentalForm.value.make
+    this.rentalData.equipment[0].model = this.addRentalForm.value.model
+    this.rentalData.equipment[0].rate_per_day = this.addRentalForm.value.rate_per_day
+    this.rentalData.equipment[0].rate_per_month = this.addRentalForm.value.rate_per_month
+    this.rentalData.equipment[0].rate_per_week = this.addRentalForm.value.rate_per_week
+    this.rentalData.equipment[0].serial_number = this.addRentalForm.value.serial_number
 
-    this.rentalData.vendor.address = addRentalForm.value.address
-    this.rentalData.vendor.contact = addRentalForm.value.contact
-    this.rentalData.vendor.sales_person = addRentalForm.value.sales_person
+    this.rentalData.invoice.amount = this.addRentalForm.value.amount
+    this.rentalData.invoice.invoice_date = this.addRentalForm.value.invoice_date
+
+    this.rentalData.vendor.address = this.addRentalForm.value.address
+    this.rentalData.vendor.contact = this.addRentalForm.value.contact
+    this.rentalData.vendor.sales_person = this.addRentalForm.value.sales_person
 
     this.rentalService.addRental(this.rentalData).subscribe(
       (data) => this.rentals = data,

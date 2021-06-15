@@ -1,112 +1,131 @@
 <div class="container-fluid">
   <div id="wrap" ng-app>
-  <h2>Update Rental</h2>
-  <mat-card>
-    <form [formGroup]="updateRentalForm" (ngSubmit)="update(rental._id, rental)">
-      <div class="form-group">
-        <label>Rental - Receive Hours</label>
-        <input type="text" class="form-control" formControlName="receive_hours"
-        [class.is-invalid]="rental.receive_hours?.invalid && rental.receive_hours?.touched">
-        <div *ngIf="rental.receive_hours?.touched && rental.receive_hours?.errors">
-          <div class="alert alert-danger" *ngIf="rental.receive_hours?.errors?.required">Receive Hours is required</div>
-          <div class="alert alert-danger" *ngIf="rental.receive_hours?.errors?.minlength">Receive Hours should be at least 3 characters long</div>
-        </div>
-      </div>
+    <h2>Update Rental</h2>
+    <mat-card>
+      <form [formGroup]="updateRentalForm" (ngSubmit)="update(rental._id, rental)">
+        <div class="subject">Rental</div>
+        <br>
+        <!-- Rental start-->
+        <mat-form-field>
+          <input matInput formControlName="receive_date" [matDatepicker]="receive_date"
+            placeholder="Rental - Receive Date" required>
+          <mat-datepicker-toggle matSuffix [for]="receive_date"></mat-datepicker-toggle>
+          <mat-datepicker #receive_date>
+            <mat-datepicker-actions>
+              <button mat-button matDatepickerCancel>Cancel</button>
+              <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+            </mat-datepicker-actions>
+          </mat-datepicker>
+          <mat-error
+            *ngIf="updateRentalForm.controls.receive_date.touched && updateRentalForm.controls.receive_date.invalid">
+            <span *ngIf="updateRentalForm.controls.receive_date.errors?.required">Choose the receive date.</span>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput type="text" name="receive_hours" formControlName="receive_hours"
+            placeholder="Rental - Receive hours" required>
+          <mat-error
+            *ngIf="updateRentalForm.controls.receive_hours.touched && updateRentalForm.controls.receive_hours.invalid">
+            <span *ngIf="updateRentalForm.controls.receive_hours.errors?.required">Enter the Receive Hours.</span>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput formControlName="return_date" [matDatepicker]="return_date" placeholder="Rental - Return Date"
+            required>
+          <mat-datepicker-toggle matSuffix [for]="return_date"></mat-datepicker-toggle>
+          <mat-datepicker #return_date>
+            <mat-datepicker-actions>
+              <button mat-button matDatepickerCancel>Cancel</button>
+              <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+            </mat-datepicker-actions>
+          </mat-datepicker>
+          <mat-error
+            *ngIf="updateRentalForm.controls.return_date.touched && updateRentalForm.controls.return_date.invalid">
+            <span *ngIf="updateRentalForm.controls.return_date.errors?.required">Choose the receive date.</span>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput type="text" name="return_hours" formControlName="return_hours"
+            placeholder="Rental - Return hours" required>
+          <mat-error
+            *ngIf="updateRentalForm.controls.return_hours.touched && updateRentalForm.controls.return_hours.invalid">
+            <span *ngIf="updateRentalForm.controls.return_hours.errors?.required">Enter the Return Hours.</span>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Rate Type</mat-label>
+          <mat-select formControlName="rate_type" required>
+            <mat-option>--</mat-option>
+            <mat-option *ngFor="let rate of rates" [value]="rate">
+              {{rate}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="updateRentalForm.controls.rate_type.touched && updateRentalForm.controls.rate_type.invalid">
+            <span *ngIf="updateRentalForm.controls.rate_type.errors?.required">Select a Rate Type.</span>
+          </mat-error>
+        </mat-form-field>
+        <!-- Rental end-->
 
-      <div class="form-group">
-        <label>Rental - Receive Date</label>
-        <input type="text" class="form-control" formControlName="receive_date"
-        [class.is-invalid]="rental.receive_date?.invalid && rental.receive_date?.touched">
-        <div *ngIf="rental.receive_date?.touched && rental.receive_date?.errors">
-          <div class="alert alert-danger" *ngIf="rental.receive_date?.errors?.required">Receive Datee is required</div>
-          <div class="alert alert-danger" *ngIf="rental.receive_date?.errors?.minlength">Receive Date should be at least 3 characters long</div>
-        </div>
-      </div>
+        <!-- Equipment start-->
+        <div class="subject">Equipment</div>
+        <br>
+        <mat-form-field appearance="fill">
+          <mat-label>Category</mat-label>
+          <mat-select formControlName="category" required>
+            <mat-option>--</mat-option>
+            <mat-option *ngFor="let category of categories" [value]="category">
+              {{category}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="updateRentalForm.controls.category.touched && updateRentalForm.controls.category.invalid">
+            <span *ngIf="updateRentalForm.controls.category.errors?.required">Enter the category.</span>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput type="text" name="make" formControlName="make" placeholder="Equipment - Make" required>
+          <mat-error *ngIf="updateRentalForm.controls.make.touched && updateRentalForm.controls.make.invalid">
+            <span *ngIf="updateRentalForm.controls.make.errors?.required">Enter the make.</span>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput type="text" name="model" formControlName="model" placeholder="Equipment - Model" required>
+          <mat-error *ngIf="updateRentalForm.controls.model.touched && updateRentalForm.controls.model.invalid">
+            <span *ngIf="updateRentalForm.controls.model.errors?.required">Enter the model.</span>
+          </mat-error>
+        </mat-form-field>
 
-      <div class="form-group">
-        <label>Rental - Return Hours</label>
-        <input type="text" class="form-control" formControlName="return_hours"
-        [class.is-invalid]="rental.return_hours?.invalid && rental.return_hours?.touched">
-        <div *ngIf="rental.return_hours?.touched && rental.return_hours?.errors">
-          <div class="alert alert-danger" *ngIf="rental.return_hours?.errors?.required">Return Hours is required</div>
-          <div class="alert alert-danger" *ngIf="rental.return_hours?.errors?.minlength">Return Hours should be at least 3 characters long</div>
-        </div>
-      </div>
+        <!-- Equipment end-->
 
-      <div class="form-group">
-        <label>Rental - Return Date</label>
-        <input type="text" class="form-control" formControlName="return_date"
-        [class.is-invalid]="rental.return_date?.invalid && rental.return_date?.touched">
-        <div *ngIf="rental.return_date?.touched && rental.return_date?.errors">
-          <div class="alert alert-danger" *ngIf="rental.return_date?.errors?.required">Return Datee is required</div>
-          <div class="alert alert-danger" *ngIf="rental.return_date?.errors?.minlength">Return Date should be at least 3 characters long</div>
-        </div>
-      </div>
+        <!-- Vendor start-->
+        <div class="subject">Vendor</div>
+        <br>
+        <mat-form-field>
+          <input matInput type="text" name="sales_person" formControlName="sales_person"
+            placeholder="Vendor - Sales person" required>
+          <mat-error
+            *ngIf="updateRentalForm.controls.sales_person.touched && updateRentalForm.controls.sales_person.invalid">
+            <span *ngIf="updateRentalForm.controls.sales_person.errors?.required">Enter the Sales Person.</span>
+          </mat-error>
+        </mat-form-field>
 
-      <div class="form-group">
-        <label>Rental - Rate Type</label>
-        <input type="text" class="form-control" formControlName="rate_type"
-        [class.is-invalid]="rental.rate_type?.invalid && rental.rate_type?.touched">
-        <div *ngIf="rental.rate_type?.touched && rental.rate_type?.errors">
-          <div class="alert alert-danger" *ngIf="rental.rate_type?.errors?.required">RateType is required</div>
-          <div class="alert alert-danger" *ngIf="rental.rate_type?.errors?.minlength">Rate Type should be at least 2 characters long</div>
-        </div>
-      </div>
+        <!-- Vendor end-->
 
-      <div class="form-group">
-        <label>Equipment - Category</label>
-        <input type="text" class="form-control" formControlName="category"
-        [class.is-invalid]="rental.category?.invalid && rental.category?.touched">
-        <div *ngIf="rental.category?.touched && rental.category?.errors">
-          <div class="alert alert-danger" *ngIf="rental.category?.errors?.required">Category is required</div>
-          <div class="alert alert-danger" *ngIf="rental.category?.errors?.pattern">Category must be characters</div>
-        </div>
-      </div>
+        <!-- Invoice start-->
+        <div class="subject">Invoice</div>
+        <br>
+        <mat-form-field>
+          <input matInput type="text" name="amount" formControlName="amount" placeholder="Invoice - Amount" required>
+          <mat-error *ngIf="updateRentalForm.controls.amount.touched && updateRentalForm.controls.amount.invalid">
+            <span *ngIf="updateRentalForm.controls.amount.errors?.required">Enter the Amount.</span>
+            <span *ngIf="updateRentalForm.controls.amount.errors?.pattern">Amount must be number.</span>
+          </mat-error>
+        </mat-form-field>
 
-      <div class="form-group">
-        <label>Equipment - Make</label>
-        <input type="text" class="form-control" formControlName="make"
-        [class.is-invalid]="rental.make?.invalid && rental.make?.touched">
-        <div *ngIf="rental.make?.touched && rental.make?.errors">
-          <div class="alert alert-danger" *ngIf="rental.make?.errors?.required">Make is required</div>
-          <div class="alert alert-danger" *ngIf="rental.make?.errors?.pattern">Make must be characters</div>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label>Equipment - Model</label>
-        <input type="text" class="form-control" formControlName="model"
-        [class.is-invalid]="rental.model?.invalid && rental.model?.touched">
-        <div *ngIf="rental.model?.touched && rental.model?.errors">
-          <div class="alert alert-danger" *ngIf="rental.model?.errors?.required">Model is required</div>
-          <div class="alert alert-danger" *ngIf="rental.model?.errors?.pattern">Model must be characters</div>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label>Vendor - Sales Person</label>
-        <input type="text" class="form-control" formControlName="sales_person"
-        [class.is-invalid]="rental.sales_person?.invalid && rental.sales_person?.touched">
-        <div *ngIf="rental.sales_person?.touched && rental.sales_person?.errors">
-          <div class="alert alert-danger" *ngIf="rental.sales_person?.errors?.required">Sales Person is required</div>
-          <div class="alert alert-danger" *ngIf="rental.sales_person?.errors?.pattern">Sales Person must be characters</div>
-        </div>
-      </div>
-
-
-      <div class="form-group">
-        <label>Invoice - Amount</label>
-        <input type="text" class="form-control" formControlName="amount"
-        [class.is-invalid]="rental.amount?.invalid && rental.amount?.touched">
-        <div *ngIf="rental.amount?.touched && rental.voice.amount?.errors">
-          <div class="alert alert-danger" *ngIf="rental.amount?.errors?.required">amount is required</div>
-          <div class="alert alert-danger" *ngIf="rental.amount?.errors?.pattern">amount must be Numbers</div>
-        </div>
-      </div>
-      <br>
-      <button mat-flat-button color="accent" [disabled]="!updateRentalForm.valid">Submit Form</button> &nbsp;&nbsp;
-      <button mat-flat-button color="primary" (click)="onBack()">Back</button>
-    </form>
- </mat-card>
-</div>
+        <!-- Invoice end-->
+        <br>
+        <button mat-flat-button color="accent" [disabled]="!updateRentalForm.valid">Submit Form</button> &nbsp;&nbsp;
+        <button mat-flat-button color="primary" (click)="onBack()">Back</button>
+      </form>
+    </mat-card>
+  </div>
 </div>
