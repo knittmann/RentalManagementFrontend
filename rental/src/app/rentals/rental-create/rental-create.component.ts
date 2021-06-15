@@ -85,11 +85,13 @@ export class RentalCreateComponent implements OnInit{
       contact: ['', Validators.required],
       //invoice
       invoice_date: ['', Validators.required],
-      amount: ['', [Validators.required, Validators.pattern('^[0-9]+$')]]
+      amount: ['', [Validators.required, Validators.pattern('^[0-9\\.0-9]+$')]]
     });
   }
 
-
+  onCalculating(){
+    console.log("test");
+  }
 
   onAddRental(){
     if(this.addRentalForm.invalid){
